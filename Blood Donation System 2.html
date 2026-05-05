@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script>
+        function validateName(){
+            var name=document.getElementById("name");
+        var nameError=document.getElementById("nameError");
+        if(name.validity.patternMismatch){
+            nameError.innerHTML = "<p style='color:red;'>Invalid name</p>";
+            return false
+        }
+        else{
+            nameError.innerHTML = "<p style='color:green;'>Verified</p>";
+            return true
+        }
+        }
+
+        function validateDate(){
+            let male=document.getElementById("male").checked
+            let female=document.getElementById("female").checked
+
+            let today=new Date();
+            let lastDate=new Date(document.getElementById("date").value)
+            let dateError=document.getElementById("dateError")
+
+            let diff=(today-lastDate)/(1000*60*60*24)
+            
+            if(male && diff<90){
+                dateError.innerHTML="NO"
+                return false
+            }
+
+            if(female && diff<120){
+                dateError.innerHTML="NO"
+                return false
+            }
+
+            return true
+        }
+
+        validateForm
+
+    </script>
+</head>
+<body>
+    <div>
+        <div>
+            <form action="" onsubmit="return validateForm()">
+        Name : <input id="name" pattern="[A-Za-z]+" onblur="validateName()"> <br>
+        <p id="nameError"></p>
+
+        Age : <input id="age" type="number" onblur="validateAge()"> <br>
+        <p id="ageError"></p>
+
+        Mobile : <input id="mobile" type="tel" onblur="validateMobile()" pattern="[0-9]{10}"> <br>
+        <p id="mobileError"></p>
+
+        Email : <input type="email" id="email" onblur="validateEmail()"> <br>
+        <p id="emailError"></p>
+
+        Gender : <input type="radio" name="a" id="male"> Male <input type="radio" name="a" id="female"> Female <br>
+        <p id="genderError"></p>
+
+        Blood Group : <select name="" id="bloodgroup">
+            <option value="">Select</option>
+            <option value="">A</option>
+            <option value="">B</option>
+            <option value="">O</option>
+        </select> <br>
+        <p id="bloodGroupError"></p>
+
+        Weight : <input type="number" id="weight" onblur="validateWeight()"> <br>
+        <p id="weightError"></p>
+
+        Sleep Hours : <input type="number" id="sleep" onblur="validateSleep()"> <br>
+        <p id="sleepError"></p>
+
+        Last Donation Date : <input type="date" id="date" onblur="validateDate()"> <br>
+        <p id="dateError"></p>
+
+        <input type="submit">
+
+    </form>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
