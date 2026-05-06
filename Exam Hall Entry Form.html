@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<script>
+    function validateName(){
+        let name=document.getElementById("name")
+        if(name.validity.patternMismatch){
+            return false
+        }
+        else{
+            return true
+        }
+
+    }
+
+    function validateAge(){
+        let age=document.getElementById("age")
+        if(age.validity.rangeUnderflow){
+            return false
+        }
+        if(age.validity.rangeOverflow){
+            return false
+        }
+        return true
+    }
+
+    function validateEmail(){
+        let email=document.getElementById("email")
+        if(email.validity.typeMismatch){
+            return false
+        }
+        else{
+            return true
+        }
+
+    }
+
+    function validateMobile(){
+        let num=document.getElementById("mobile")
+        if(num.validity.patternMismatch){
+            return false
+        }
+        else{
+            return true
+        }
+
+    }
+
+
+    function validateAttendence(){
+        let att=document.getElementById("attendence")
+        if(att.validity.rangeUnderflow){
+            return false
+        }
+        else{
+            return true
+        }
+
+    }
+
+    function validateDate(){
+        let type;
+        let today=new Date();
+        let date=new Date(document.getElementById("date").value)
+        let dateError=document.getElementById("dateError")
+
+        let diff=(today-date)/(1000*60*60*24)
+
+        if(document.getElementById("regular").checked){
+            type="regular"
+        }
+        if(document.getElementById("private").checked){
+            type="private"
+        }
+
+        if(type==="regular" && diff<30){
+            dateError.innerHTML="Wait 30 days"
+            return false
+        }
+
+        if(type==="private" && diff<60){
+            dateError.innerHTML="Wait 60 days"
+            return false
+        }
+        dateError.innerHTML="Date Verified"
+        return true
+    }
+
+    function  validateStudyHours(){
+        let hours=document.getElementById("hours")
+        if(hours.validity.rangeUnderflow){
+            return false
+        }
+        else{
+            return true
+        }
+    }
+
+
+    function validateHallTicket(){
+        let hallticket=document.getElementById("hallticket").checked
+        let emptyError=document.getElementById("emptyError")
+        if(!hallticket){
+            emptyError.innerHTML="Hall Ticket Required"
+            return false
+        }
+        return true
+    }
+
+    function validateForm(){
+        let name=document.getElementById("name").value
+        let age=document.getElementById("age").value
+        let email=document.getElementById("email").value
+        let mobile=document.getElementById("mobile").value
+       
+        let attendence=document.getElementById("attendence").value
+        let date=document.getElementById("date").value
+        
+        let emptyError=document.getElementById("emptyError")
+
+        let typeSelect=(document.getElementById("regular").checked || document.getElementById("private").checked)
+        if(!typeSelect){
+            emptyError.innerHTML="Enter Student Type"
+            return false
+        }
+
+        if(name==="" || age==="" || email==="" || mobile==="" || attendence==="" || date===""){
+            emptyError.innerHTML="ALL FIELDS ARE REQUIRED"
+            return false
+        }
+
+        if(!validateName()) return false
+        if(!validateAge()) return false
+        if(!validateEmail()) return false
+        if(!validateMobile()) return false
+        if(!validateAttendence()) return false
+        if(!validateDate()) return false
+        if(!validateStudyHours()) return false
+        if(!validateHallTicket()) return false
+
+        return true
+
+        
+    }
+
+
+
+</script>
+<body>
+    <div>
+        <div>
+            <form action="" onsubmit="return validateForm()">
+                Name : <input type="text" id="name" onblur="validateName()" pattern="[A-Za-z]+"> <br>
+                Age : <input type="number" id="age" min="17" max="30" onblur="validateAge()"> <br>
+                Email : <input type="email" id="email" onblur="validateEmail()"> <br>
+                Mobile Number : <input type="tel" id="mobile" onblur="validateMobile()" pattern="[0-9]{10}"> <br>
+                Student Type : <input type="radio" id="regular" name="type"> Regular <input type="radio" name="type" id="private"> Private <br>
+                Attendence : <input type="number" id="attendence" min="75" onblur="validateAttendence()"> <br>
+                Exam Date : <input id="date" type="date" onblur="validateDate()"> <br>
+                <p id="dateError"></p>
+                Study Hours Per Day : <input id="hours" type="number" min="3" onblur="validateStudyHours()">
+                Hall Ticket Copy : <input id="hallticket" type="checkbox" onblur="validateHallTicket()">
+
+                <p id="emptyError"></p>
+                <input type="submit" id="submit">
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
