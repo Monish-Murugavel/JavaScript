@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+
+    <script>
+        function showHint(){
+            let hint= document.getElementById("hint")
+            hint.innerHTML="Format: Two uppercase letters followed by 3 or 4 digits (e.g., CS101)"
+        }
+        function validateCourseCode(){
+            let coursecode=document.getElementById("coursecode")
+            let coursecodeError=document.getElementById("coursecodeError")
+
+            
+            if(coursecode.value===""){
+                return false
+            }
+
+            if(coursecode.validity.patternMismatch){
+                coursecodeError.innerHTML="NOT VERIFIED"
+                coursecodeError.style.color="red"
+                return false
+            }
+
+            else{
+                coursecodeError.innerHTML="VERIFIED"
+                coursecodeError.style.color="green"
+                return true
+            }
+
+        }
+
+        function validateEmail(){
+            let email=document.getElementById("email")
+            let emailError=document.getElementById("emailError")
+
+            if(email.value===""){
+                return false
+            }
+
+            if(email.validity.typeMismatch){
+                emailError.innerHTML="NOT VERIFIED"
+                emailError.style.color="red"
+                return false
+            }
+            else{
+                emailError.innerHTML="VERIFIED"
+                emailError.style.color="green"
+                return true
+            }
+        }
+
+        function validateName(){
+            let name=document.getElementById("name").value
+            if(name===""){
+                return false
+            }
+            else{
+                return true
+            }
+        }
+
+        function validateID(){
+            let id=document.getElementById("id")
+            let error=document.getElementById("studentidError")
+
+            if(id.value===""){
+                return false
+            }
+
+            if(id.validity.patternMismatch){
+                error.innerHTML="NOT VERIFIED"
+                error.style.color="red"
+                return false
+            }
+            else{
+                error.innerHTML="VERIFIED"
+                error.style.color="green"
+                return true
+            }
+       }
+
+        function validateDate(){
+            let date=document.getElementById("examdate").value
+            if(date===""){
+                    return false
+                }
+                else{
+                    return true
+                }
+        }
+
+        function validateForm(){
+            let name=document.getElementById("name").value
+            let coursecode=document.getElementById("coursecode").value
+            let email=document.getElementById("email").value
+            let id=document.getElementById("id").value
+            let date=document.getElementById("examdate").value
+
+            let emptyError=document.getElementById("emptyError")
+
+            if(name==="" || id==="" || email==="" || coursecode==="" || date==="") {
+                emptyError.innerHTML="Fill all Required Fields"
+                emptyError.style.color="red"
+                return false
+            }
+
+            if(!validateCourseCode()) return false
+            if(!validateEmail()) return false
+            if(!validateName()) return false
+            if(!validateID())return false
+            if(!validateDate())return false
+
+            document.getElementById("_name").innerHTML=name
+            document.getElementById("_id").innerHTML=id
+            document.getElementById("_email").innerHTML=email
+            document.getElementById("_course").innerHTML=coursecode
+            document.getElementById("_date").innerHTML=date
+
+            document.getElementById("resultBox").style.display="block"
+
+            emptyError.innerHTML="Form Verified"
+            emptyError.style.color="green"
+
+            return false;
+        }
+        
+
+
+    </script>
+
+</head>
+
+<body style="background-color: antiquewhite;">
+    <div style="width: 500px; height:600px; margin: auto; margin-top: 50pxpx; background-color: lightskyblue;">
+        <br>
+        <h1 style="margin-left: 30px;">Student Re-Registration Form</h1>
+        <div style="margin-left: 90px; margin-top: 40px;">
+            <br>
+        <form action="" onsubmit="return validateForm()">
+              Course Code : <input type="text" pattern="[A-Z]{2}[0-9]{3,4}" id="coursecode" onfocus="showHint()" onblur="validateCourseCode()"> <br>
+              <p id="hint"></p> 
+              <p id="coursecodeError"></p>
+              
+              Student ID : <input type="text" pattern="[A-Z]{2}-[0-9]{4}" id="id" onblur="validateID()"> <br>
+              <p id="studentidError"></p> <br>
+
+              Name : <input type="text" id="name" onblur="validateName()"> <br> <br>
+
+              Email : <input type="email" name="" id="email" onblur="validateEmail()"> <br>
+              <p id="emailError"></p> <br>
+
+              Exam Date : <input type="date" id="examdate" onblur="validateDate()"> <br>
+
+            <p id="emptyError"> </p>
+<br>
+              <input type="submit" style="margin-left: 150px;">
+
+        </form>
+        </div>
+    </div>
+
+    <div id="resultBox" style="display: none; width: 400px; background-color: honeydew; margin: auto;">
+        <h3>Registration Information</h3>
+
+        <p>Student Name : <span id="_name"></span></p> 
+        <p>Student ID : <span id="_id"></span></p>
+        <p>Email : <span id="_email"></span></p>
+        <p>Course Code : <span id="_course"></span></p>
+        <p>Exam Date : <span id="_date"></span></p>
+
+    </div>
+    
+    
+</body>
+
+</html>
