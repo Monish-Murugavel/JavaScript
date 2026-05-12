@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Document</title>
+
+    <script>
+    function validateName(){
+        var name=document.getElementById("name");
+        var nameError=document.getElementById("nameError");
+        if(name.validity.patternMismatch){
+            nameError.innerHTML = "<p style='color:red;'>Invalid name</p>";
+            return false
+        }
+        else{
+            nameError.innerHTML = "<p style='color:green;'>Verified</p>";
+            return true
+        }
+    }
+
+    function validateAge(){
+        var age=document.getElementById("age").value;
+        var ageError=document.getElementById("ageError")
+        if(age<18 || age>65){
+            ageError.innerHTML="Age must be between 18 and 65";
+            return false
+        }
+        else{
+            ageError.innerHTML="Verified"
+            return true
+        }
+    }
+
+    function  validateMobile(){
+        var mobile=document.getElementById("mobile");
+        var mobileError=document.getElementById("mobileError");
+        if(mobile.validity.patternMismatch){
+            mobileError.innerHTML="Invalid mobile number";
+            return false
+        }
+        else{
+            mobileError.innerHTML="Verified";
+            return true
+        }
+        }
+    
+    function validateEmail(){
+        let email=document.getElementById("email");
+        let emailError=document.getElementById("emailError");
+        if(email.validity.typeMismatch){
+            emailError.innerHTML="Invalid email address";
+            return false
+        }
+        else{
+            emailError.innerHTML="Verified";
+            return true
+        }
+    }
+
+    function validateWeight(){
+        let weight=document.getElementById("weight").value;
+        let weightError=document.getElementById("weightError");
+        if(weight<50){
+            weightError.innerHTML="Weight is less than 50kg"
+            return false
+        }
+        else{
+            weightError.innerHTML="Verified";
+            return true
+        }
+    }
+
+    function validateSleep(){
+        let sleep=document.getElementById("sleep").value;
+        let sleepError=document.getElementById("sleepError");
+        if(sleep<8){
+            sleepError.innerHTML="Sleep hours must be 8";
+            return false
+        }else{
+            sleepError.innerHTML="Verified";
+            return true
+        }
+        
+    }
+
+    function validateLastDonationDate(){
+        let gender=document.getElementById("gender").value;
+        let lastdate=new Date(document.getElementById("LastDonationDate").value);
+        let lastdateError=document.getElementById("LastDonationDateError");
+        let today=new Date()
+
+        let diff=(today-lastdate)/(1000*60*60*24);
+
+        if(gender=="male" && diff <90){
+            lastdateError.innerHTML="REJECTED"
+            return false
+        }
+        else if(gender=="female" && diff<120){
+            lastdateError.innerHTML="REJECTED"
+            return false
+        }
+        else{
+            lastdateError.innerHTML="ACCEPTED"
+            return true
+        }   
+    }
+
+    function validateForm(){
+        if(!validateName()) return false;
+        if(!validateAge()) return false;
+        if(!validateMobile()) return false;
+        if(!validateEmail()) return false;
+        if(!validateWeight()) return false;
+        if(!validateSleep()) return false;
+        if(!validateLastDonationDate()) return false;
+    
+
+        return true
+    }
+
+
+
+</script>
+
+    
+</head>
+<body>
+    <form action="" onsubmit="return validateForm()">
+        Name : <input id="name" pattern="[A-Za-z]+" onblur="validateName()"> <br>
+        <p id="nameError"></p>
+
+        Age : <input id="age" type="number" onblur="validateAge()"> <br>
+        <p id="ageError"></p>
+
+        Mobile : <input id="mobile" type="tel" onblur="validateMobile()" pattern="[0-9]{10}"> <br>
+        <p id="mobileError"></p>
+
+        Email : <input type="email" id="email" onblur="validateEmail()"> <br>
+        <p id="emailError"></p>
+
+        Gender : <select name="" id="gender">
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                 </select> <br>
+        <p id="genderError"></p>
+
+        Blood Group : <select name="" id="bloodgroup">
+            <option value="">Select</option>
+            <option value="">A</option>
+            <option value="">B</option>
+            <option value="">O</option>
+        </select> <br>
+        <p id="bloodGroupError"></p>
+
+        Weight : <input type="number" id="weight" onblur="validateWeight()"> <br>
+        <p id="weightError"></p>
+
+        Sleep Hours : <input type="number" id="sleep" onblur="validateSleep()"> <br>
+        <p id="sleepError"></p>
+
+        Last Donation Date : <input type="date" id="LastDonationDate" onblur="validateLastDonationDate()"> <br>
+        <p id="LastDonationDateError"></p>
+
+        <input type="submit">
+
+    </form>
+
+    
+</body>
+</html>
