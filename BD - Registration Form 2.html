@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script>
+       function validateName(){
+        var name=document.getElementById("name").value;
+        var nameError=document.getElementById("nameError");
+        if(name==""){
+            document.name.nameError.innerHTML="Name is required";
+        } 
+        else{
+            document.name.nameError.innerHTML="Verified";
+        }
+       }
+
+       function validateAge(){
+        var age=document.getElementById("age").value;
+        if(age < 18 || age > 65){
+            alert("Age must be between 18 and 65");
+        }
+       }
+
+       function validateMobile(){
+        var mobile=document.getElementById("mobile");
+        var mobileError=docuent.getElementById("mobileError");
+        if(mobile.valididty.patternMismatch){
+            document.mobile.mobileError.innerHTML=<p style="color: red;">Invalid mobile number</p>;
+        }
+       
+        else{
+            document.mobile.mobileError.innerHTML=<p style="color: green;">Valid mobile number</p>;
+        }
+    }
+
+       function validateEmail(){
+        var email=document.getElementById("email");
+        if(email.validity.typeMismatch){
+            alert("Invalid email address");
+        }
+        else{
+            alert("Valid email address");
+        }
+
+       }
+
+       function validateForm(){
+        validateName();
+        validateAge();
+        validateMobile();
+        validateEmail();
+
+        let weight=document.getElementById("weight").value;
+        let weighterror=doocument.getElementById("weightError");
+
+        let sleep=document.getElementById("sleep").value;
+        let sleeperror=document.getElementById("SleepError");
+
+        let gender=document.getElementById("gender").value;
+        let gendererror=document.getElementById("genderError");
+
+        let bg=document.getElementById("bloodgroup").value;
+        let bgerror=document.getElementById("bloodGroupError");
+        
+
+        if(weight<50){
+            document.weight.weighterror.innerHTML= <p style="color: red;"> Weight must be at least 50kg </p>;
+        
+        else{
+            document.weight.weighterror.innerHTML= <p style="color: green;"> Valid weight </p>;
+        }
+        }
+
+        if(sleep<6){
+            document.sleep.sleeperror.innerHTML= <p style="color: red;"> Sleep hours must be at least 6 </p>;
+        
+        else{
+            document.sleep.sleeperror.innerHTML= <p style="color: green;"> Valid sleep hours </p>;
+        }
+        }
+
+        if(gender=="select"){
+            document.gender.gendererror.innerHTML= <p style="color: red;"> Please select a gender </p>;
+        
+        else{
+            document.gender.gendererror.innerHTML= <p style="color: green;"> Valid gender </p>;
+        }
+        }
+
+        if bg=="select"){
+            document.bg.bgerror.innerHTML= <p style="color: red;"> Please select a blood group </p>;
+        
+        else{
+            document.bg.bgerror.innerHTML= <p style="color: green;"> Valid blood group </p>;
+        }
+       }
+
+
+
+    </script>
+</head>
+<body>()
+    <form action="">
+        Name : <input type="text" id="name" onblur="validateName()"> <br>
+        <p id="nameError"></p>
+       
+        Age : <input type="number" id="age" onblur="validateAge()"> <br>
+        <p id="ageError"></p>
+
+        Gender : <select name="gender" id="gender" onblur="validateForm()">
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                 </select>  <br>
+        <p id="genderError"></p>
+
+        Blood Group : <select name="bloodGroup" id="bloodGroup" onblur="validateForm()">
+                        <option value="">Select</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                      </select>  <br>
+        <p id="bloodGroupError"></p>
+
+        Last Donation Date : <input type="date" id="lastdate" onblur="validateForm()"> <br>
+        <p id="lastdateError"></p>
+
+        Weight : <input type="number" id="weight" onblur="validateForm"> <br>
+        <p id="weightError"></p>
+
+        Sleep Hours : <input type="number" id ="sleep" onblur="validateForm"> <br>
+
+        Mobile : <input type="tel" id="mobile" onblur="validateMobile()" pattern="[0-9]{10}"> <br>
+
+        Email : <input type="email" id="email" onblur="validateEmail()"> <br>
+        <p id="emailError"></p>
+
+
+        <input type="submit">
+
+                    
+    </form>
+    
+</body>
+</html>
